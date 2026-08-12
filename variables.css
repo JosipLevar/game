@@ -1,0 +1,107 @@
+/* variables.css
+   Design language: a real LV-network dispatch console, not a "game skin".
+   Dark instrumentation background; three status colours (ok/warn/critical)
+   are reserved EXCLUSIVELY for electrical state — never reused as decor —
+   plus one distinct brand/selection accent so selection is never
+   confused with a status reading.
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  /* Surfaces */
+  --bg-void: #0a0e0c;
+  --bg-panel: #121815;
+  --bg-panel-raised: #182019;
+  --bg-inset: #0d1210;
+  --line-grid: #223028;
+  --line-grid-strong: #2c3d33;
+
+  /* Text */
+  --text-primary: #e7efe9;
+  --text-muted: #7e9689;
+  --text-faint: #506459;
+
+  /* Status — reserved meanings, never decorative */
+  --status-ok: #5fd98a;
+  --status-ok-dim: #2c4934;
+  --status-warn: #f0a83a;
+  --status-warn-dim: #4a3a1c;
+  --status-critical: #ff5a5a;
+  --status-critical-dim: #4a2222;
+
+  /* Brand / selection — distinct from all three status colours */
+  --accent: #3fbfa8;
+  --accent-dim: #1d3d37;
+  --select: #48a9e6;
+  --select-dim: #1c3548;
+
+  /* Typography */
+  --font-display: 'Space Grotesk', 'Arial Narrow', sans-serif;
+  --font-body: 'IBM Plex Sans', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
+
+  --fs-xs: 0.72rem;
+  --fs-sm: 0.82rem;
+  --fs-base: 0.95rem;
+  --fs-md: 1.1rem;
+  --fs-lg: 1.4rem;
+  --fs-xl: 1.9rem;
+
+  --radius-sm: 3px;
+  --radius-md: 6px;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+
+  --shadow-panel: 0 1px 0 rgba(255, 255, 255, 0.03) inset, 0 8px 24px rgba(0, 0, 0, 0.35);
+  --focus-ring: 0 0 0 2px var(--bg-void), 0 0 0 4px var(--select);
+}
+
+@media (prefers-color-scheme: light) {
+  :root[data-theme='auto'] {
+    --bg-void: #eef2ee;
+    --bg-panel: #ffffff;
+    --bg-panel-raised: #f7faf7;
+    --bg-inset: #e7ece6;
+    --line-grid: #d3ddd1;
+    --line-grid-strong: #b9c7b6;
+    --text-primary: #12181a;
+    --text-muted: #4c5c53;
+    --text-faint: #829486;
+    --status-ok-dim: #d6f3e0;
+    --status-warn-dim: #fce9cd;
+    --status-critical-dim: #ffdcdc;
+    --accent-dim: #d6f3ee;
+    --select-dim: #d8ecfb;
+    --shadow-panel: 0 1px 0 rgba(0, 0, 0, 0.02) inset, 0 8px 24px rgba(0, 0, 0, 0.08);
+  }
+}
+
+:root[data-theme='light'] {
+  --bg-void: #eef2ee;
+  --bg-panel: #ffffff;
+  --bg-panel-raised: #f7faf7;
+  --bg-inset: #e7ece6;
+  --line-grid: #d3ddd1;
+  --line-grid-strong: #b9c7b6;
+  --text-primary: #12181a;
+  --text-muted: #4c5c53;
+  --text-faint: #829486;
+  --status-ok-dim: #d6f3e0;
+  --status-warn-dim: #fce9cd;
+  --status-critical-dim: #ffdcdc;
+  --accent-dim: #d6f3ee;
+  --select-dim: #d8ecfb;
+  --shadow-panel: 0 1px 0 rgba(0, 0, 0, 0.02) inset, 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-ok: 0;
+  }
+}

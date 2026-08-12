@@ -1,0 +1,40 @@
+/* print.css — applies when the user prints (e.g. Ctrl+P on the end-of-round
+   summary). Goal: a clean, readable record of the round — not a screenshot
+   of the control room UI. */
+
+@media print {
+  body { background: #fff; color: #000; }
+
+  .topbar .topbar-actions,
+  .network-pane .network-toolbar,
+  .status-bar .status-log-toggle,
+  #toast-root,
+  .dialog-overlay button,
+  .action-panel,
+  .network-legend,
+  button {
+    display: none !important;
+  }
+
+  .game-layout {
+    display: block !important;
+    height: auto !important;
+    background: #fff !important;
+  }
+
+  .panel, .inspector-pane, .network-pane {
+    background: #fff !important;
+    border: 1px solid #999 !important;
+    box-shadow: none !important;
+    color: #000 !important;
+  }
+
+  .grid-edge-line, .grid-node-ring, .grid-transformer-body { stroke: #000 !important; }
+  .grid-edge-flow { display: none !important; }
+
+  a[href]::after { content: " (" attr(href) ")"; font-size: 0.8em; }
+
+  .print-summary { display: block !important; }
+}
+
+.print-summary { display: none; }

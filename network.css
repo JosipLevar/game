@@ -1,0 +1,121 @@
+/* network.css — styling for the SVG single-line diagram rendered by renderer-svg.js */
+
+.network-svg-wrap svg {
+  display: block;
+  min-width: 640px;
+}
+
+.grid-edge-line {
+  fill: none;
+  stroke: var(--status-ok);
+  stroke-linecap: round;
+  transition: stroke 150ms ease;
+}
+.grid-edge-line.status-warn { stroke: var(--status-warn); }
+.grid-edge-line.status-critical { stroke: var(--status-critical); }
+
+.grid-edge-flow {
+  fill: none;
+  stroke: rgba(231, 239, 233, 0.35);
+  stroke-linecap: round;
+  stroke-dasharray: 2 8;
+  animation: flow-march 900ms linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .grid-edge-flow { animation: none; }
+}
+@keyframes flow-march {
+  to { stroke-dashoffset: -20; }
+}
+
+.grid-edge-hit {
+  fill: none;
+  stroke: transparent;
+  stroke-width: 18;
+  cursor: pointer;
+}
+
+.grid-edge-group.is-selected .grid-edge-line { stroke: var(--select); stroke-width: 5; }
+.grid-edge-group:focus-visible .grid-edge-line { outline: none; }
+.grid-edge-group:focus-visible .grid-edge-hit { stroke: rgba(72, 169, 230, 0.25); }
+
+.grid-edge-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  fill: var(--text-muted);
+}
+.grid-edge-label.status-warn { fill: var(--status-warn); }
+.grid-edge-label.status-critical { fill: var(--status-critical); font-weight: 600; }
+
+.grid-edge-badge-bg { fill: var(--bg-panel); stroke: var(--line-grid-strong); stroke-width: 1; }
+.grid-edge-badge-bg.status-warn { stroke: var(--status-warn); }
+.grid-edge-badge-bg.status-critical { stroke: var(--status-critical); }
+
+.grid-node-group { cursor: pointer; }
+.grid-node-group.is-selected .grid-node-ring { stroke: var(--select); stroke-width: 3; }
+
+.grid-node-ring {
+  fill: var(--bg-panel);
+  stroke: var(--status-ok);
+  stroke-width: 2.5;
+  transition: stroke 150ms ease;
+}
+.grid-node-ring.status-warn { stroke: var(--status-warn); }
+.grid-node-ring.status-critical { stroke: var(--status-critical); }
+.grid-node-ring.status-disconnected { stroke: var(--text-faint); stroke-dasharray: 3 3; }
+
+.grid-node-priority-ring {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.5;
+}
+
+.grid-node-icon { fill: var(--text-primary); }
+.grid-node-icon.status-disconnected { fill: var(--text-faint); }
+
+.grid-node-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  fill: var(--text-primary);
+}
+.grid-node-sublabel {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  fill: var(--text-muted);
+}
+.grid-node-sublabel.status-warn { fill: var(--status-warn); }
+.grid-node-sublabel.status-critical { fill: var(--status-critical); font-weight: 600; }
+
+.grid-transformer-body { fill: var(--bg-panel); stroke: var(--status-ok); stroke-width: 3; }
+.grid-transformer-body.status-warn { stroke: var(--status-warn); }
+.grid-transformer-body.status-critical { stroke: var(--status-critical); }
+.grid-transformer-label { font-family: var(--font-display); font-size: 12px; font-weight: 600; fill: var(--text-primary); }
+
+.grid-node-group:focus-visible .grid-node-ring,
+.grid-edge-group:focus-visible .grid-edge-line,
+.grid-transformer-group:focus-visible .grid-transformer-body {
+  filter: drop-shadow(0 0 0 3px var(--select));
+}
+
+/* Legend, rendered once beneath the diagram — text + icon, colour is
+   reinforcement only, never the sole signal. */
+.network-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  padding: var(--space-2) var(--space-4) var(--space-4);
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+.network-legend .legend-item { display: flex; align-items: center; gap: var(--space-1); }
+.network-legend .legend-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.network-legend .legend-dot.ok { background: var(--status-ok); }
+.network-legend .legend-dot.warn { background: var(--status-warn); }
+.network-legend .legend-dot.critical { background: var(--status-critical); }
+
+.simplification-notice {
+  font-size: var(--fs-xs);
+  color: var(--text-faint);
+  padding: var(--space-1) var(--space-4) 0;
+  font-style: italic;
+}
