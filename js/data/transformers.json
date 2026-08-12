@@ -1,0 +1,7 @@
+[
+  { "id": "ts-100", "ratedPowerKVA": 100 },
+  { "id": "ts-160", "ratedPowerKVA": 160 },
+  { "id": "ts-250", "ratedPowerKVA": 250 },
+  { "id": "ts-400", "ratedPowerKVA": 400 },
+  { "id": "ts-630", "ratedPowerKVA": 630 }
+]

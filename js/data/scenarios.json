@@ -1,0 +1,38 @@
+{
+  "problemTypes": [
+    {
+      "id": "voltage-drop",
+      "title": "Pad napona na kraju izvoda",
+      "description": "Udaljeni potrošač ima napon ispod dozvoljenog praga zbog slabog kabela ili velike duljine voda.",
+      "allowShortenOnAffectedEdge": true
+    },
+    {
+      "id": "cable-overload",
+      "title": "Preopterećen vod",
+      "description": "Jedan od vodova nosi više struje nego što kabel podnosi.",
+      "allowShortenOnAffectedEdge": false
+    },
+    {
+      "id": "transformer-overload",
+      "title": "Preopterećena trafostanica",
+      "description": "Ukupno opterećenje izvoda prelazi nazivnu snagu trafostanice.",
+      "allowShortenOnAffectedEdge": false
+    },
+    {
+      "id": "poor-power-factor",
+      "title": "Loš faktor snage",
+      "description": "Veliki induktivni potrošač vuče previše jalove snage i diže struju voda.",
+      "allowShortenOnAffectedEdge": false
+    }
+  ],
+  "consumerNamePool": [
+    "Pekara Sredina", "Stambena zgrada A", "Stambena zgrada B", "Trafo radionica",
+    "Vrtić Zvončić", "Ambulanta", "Mesnica Kod Ive", "Praonica rublja",
+    "Stolarska radionica", "Ljekarna", "OŠ Bregana", "Crpna stanica",
+    "Frizerski salon", "Autoservis", "Staračka kuća", "Kavana Corso",
+    "Trgovina mješovitom robom", "Hladnjača", "Pilana", "Uredska zgrada"
+  ],
+  "feederNamePrefix": "IZ",
+  "nodeNamePrefix": "N",
+  "edgeNamePrefix": "VOD"
+}

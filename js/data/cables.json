@@ -1,0 +1,56 @@
+[
+  {
+    "id": "nyy-4x16",
+    "name": "NYY-J 4×16 mm²",
+    "crossSectionMm2": 16,
+    "resistanceOhmPerKm": 1.15,
+    "maxCurrentA": 80,
+    "tier": 1,
+    "costPerKmCents": 900000
+  },
+  {
+    "id": "nyy-4x25",
+    "name": "NYY-J 4×25 mm²",
+    "crossSectionMm2": 25,
+    "resistanceOhmPerKm": 0.727,
+    "maxCurrentA": 105,
+    "tier": 2,
+    "costPerKmCents": 1200000
+  },
+  {
+    "id": "nyy-4x35",
+    "name": "NYY-J 4×35 mm²",
+    "crossSectionMm2": 35,
+    "resistanceOhmPerKm": 0.524,
+    "maxCurrentA": 130,
+    "tier": 3,
+    "costPerKmCents": 1550000
+  },
+  {
+    "id": "nayy-4x70",
+    "name": "NAYY 4×70 mm²",
+    "crossSectionMm2": 70,
+    "resistanceOhmPerKm": 0.443,
+    "maxCurrentA": 180,
+    "tier": 4,
+    "costPerKmCents": 1850000
+  },
+  {
+    "id": "nayy-4x150",
+    "name": "NAYY 4×150 mm²",
+    "crossSectionMm2": 150,
+    "resistanceOhmPerKm": 0.206,
+    "maxCurrentA": 275,
+    "tier": 5,
+    "costPerKmCents": 2600000
+  },
+  {
+    "id": "nayy-4x240",
+    "name": "NAYY 4×240 mm²",
+    "crossSectionMm2": 240,
+    "resistanceOhmPerKm": 0.125,
+    "maxCurrentA": 355,
+    "tier": 6,
+    "costPerKmCents": 3400000
+  }
+]
