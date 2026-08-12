@@ -1,0 +1,13 @@
+{
+  "name": "GridFix: Distribution Roguelike",
+  "short_name": "GridFix",
+  "description": "Dispečerska slagalica niskonaponske mreže.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0a0e0c",
+  "theme_color": "#121815",
+  "lang": "hr",
+  "icons": [
+    { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

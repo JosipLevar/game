@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="hr" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GridFix — Distribution Roguelike</title>
+<meta name="description" content="Dispečerska slagalica niskonaponske mreže. Vrati mrežu u pogon prije nego ponestane budžeta i poteza.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/network.css">
+<link rel="stylesheet" href="css/print.css">
+</head>
+<body>
+<div id="app">
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">⏚ GridFix</span>
+      <span class="brand-tag">Distribution Roguelike</span>
+    </div>
+    <div class="topbar-actions">
+      <span class="visually-hidden" id="live-region" aria-live="polite"></span>
+      <button id="btn-home" class="ghost" hidden>Početni zaslon</button>
+      <button id="btn-theme-toggle" class="ghost" aria-label="Promijeni tamni/svijetli prikaz">◐ Prikaz</button>
+    </div>
+  </header>
+
+  <!-- ============= START SCREEN ============= -->
+  <main id="screen-start" class="screen active">
+    <div class="start-wrap">
+
+      <div class="start-hero">
+        <h1>Vrati mrežu u pogon.</h1>
+        <p>Zaprimljena je prijava kvara na niskonaponskoj mreži. Analiziraj jednopolnu shemu, otkrij preopterećenja i podnapone, te ih otkloni unutar budžeta i broja dopuštenih intervencija.</p>
+      </div>
+
+      <section class="panel" id="panel-continue" hidden>
+        <h2>Nastavi</h2>
+        <div class="list-row">
+          <span id="continue-summary">Aktivna runda</span>
+          <button id="btn-continue" class="primary">Nastavi zadnju intervenciju</button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Nova intervencija — odaberi težinu</h2>
+        <div class="difficulty-grid" id="difficulty-grid" role="list">
+          <button class="difficulty-card" data-difficulty="beginner" role="listitem">
+            <span class="diff-name">Početnik</span>
+            <span class="diff-meta">1 izvod · 6 intervencija · veći budžet</span>
+          </button>
+          <button class="difficulty-card" data-difficulty="operator" role="listitem">
+            <span class="diff-name">Operater</span>
+            <span class="diff-meta">1–2 izvoda · 5 intervencija · srednji budžet</span>
+          </button>
+          <button class="difficulty-card" data-difficulty="projektant" role="listitem">
+            <span class="diff-name">Projektant</span>
+            <span class="diff-meta">2–3 izvoda · 4 intervencije · manji budžet</span>
+          </button>
+        </div>
+        <div class="start-actions-row">
+          <button id="btn-import" class="ghost">Uvezi rundu…</button>
+          <input type="file" id="import-file-input" accept="application/json" class="visually-hidden" aria-label="Uvezi rundu iz JSON datoteke">
+          <button id="btn-reset-data" class="danger">Resetiraj lokalne podatke</button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Najbolji rezultati</h2>
+        <div id="highscore-list"><p class="empty-note">Još nema spremljenih rezultata.</p></div>
+      </section>
+
+      <section class="panel">
+        <h2>Povijest rundi</h2>
+        <div id="history-list"><p class="empty-note">Još nema odigranih rundi.</p></div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ============= GAME SCREEN ============= -->
+  <main id="screen-game" class="screen game-layout">
+
+    <section class="network-pane">
+      <div class="network-toolbar">
+        <div>
+          <strong id="scenario-title" class="mono">—</strong>
+          <div id="scenario-description" style="color:var(--text-muted); max-width:60ch;"></div>
+        </div>
+        <div class="start-actions-row">
+          <button id="btn-export-round" class="ghost">Izvezi rundu</button>
+          <button id="btn-give-up" class="danger">Odustani</button>
+        </div>
+      </div>
+      <p class="simplification-notice">Pojednostavljena simulacija: reaktancija nije uključena.</p>
+      <div class="network-svg-wrap" id="network-svg-wrap"></div>
+      <div class="network-legend" id="network-legend"></div>
+      <section style="padding: 0 var(--space-4) var(--space-4);">
+        <h3 style="font-size: var(--fs-sm); color: var(--text-muted); margin-bottom: var(--space-2);">Aktivna upozorenja</h3>
+        <div class="alarms-table" id="alarms-table"><p class="empty-note">Nema aktivnih upozorenja.</p></div>
+      </section>
+    </section>
+
+    <aside class="inspector-pane">
+      <section id="inspector"></section>
+      <section id="action-panel"></section>
+      <section>
+        <h3 style="font-size: var(--fs-sm); color: var(--text-muted); margin-bottom: var(--space-2);">Zapisnik poteza</h3>
+        <div class="action-log" id="action-log"><p class="empty-note">Još nema odigranih poteza.</p></div>
+      </section>
+    </aside>
+
+    <footer class="status-bar">
+      <div class="status-item">
+        <span class="si-label">Rezultat</span>
+        <span class="si-value mono" id="status-score">1000</span>
+      </div>
+      <div class="status-item">
+        <span class="si-label">Budžet</span>
+        <span class="si-value mono" id="status-budget">—</span>
+      </div>
+      <div class="status-item">
+        <span class="si-label">Preostale intervencije</span>
+        <span class="si-value mono" id="status-actions">—</span>
+      </div>
+      <div class="status-item">
+        <span class="si-label">Alarmi</span>
+        <span class="si-value mono" id="status-alarms">0</span>
+      </div>
+      <div class="status-item">
+        <span class="si-label">Trajanje</span>
+        <span class="si-value mono" id="status-elapsed">0:00</span>
+      </div>
+      <div class="status-item">
+        <span class="si-label">Težina · Seed</span>
+        <span class="si-value mono" id="status-meta">—</span>
+      </div>
+    </footer>
+
+  </main>
+
+  <div class="print-summary" id="print-summary"></div>
+
+</div>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
